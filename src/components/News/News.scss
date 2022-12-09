@@ -2,5 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.view-more {
+  padding: 10px;
+  margin: 0 10px 20px 10px !important;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  background-color: rgb(162, 155, 155);
+  color: #38699f;
+  cursor: pointer;
 }

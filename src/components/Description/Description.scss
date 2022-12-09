@@ -1,0 +1,29 @@
+.description-wrapper {
+  position: relative;
+
+  .read-more-top {
+    height: 25px;
+    width: 100%;
+    bottom: 30px;
+    background-image: linear-gradient(to top, rgb(172, 166, 166), rgba(255, 255, 255, 0.15));
+    margin: 0px !important;
+    position: absolute;
+  }
+
+  .read-more {
+    // height: 25px;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: #38699f;
+      transition: all ease 400ms;
+    }
+  }
+
+  .description-p {
+    padding: 10px;
+  }
+}

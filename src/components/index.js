@@ -4,4 +4,6 @@ import Carousel from './Carousel';
 import SubBanner from './SubBanner';
 import Discover from './Discover';
 import News from './News';
-export { LoginForm, DrawerLeft, Carousel, SubBanner, Discover, News };
+import Description from './Description';
+import Keywords from './Keywords';
+export { LoginForm, DrawerLeft, Carousel, SubBanner, Discover, News, Description, Keywords };

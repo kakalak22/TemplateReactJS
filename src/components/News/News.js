@@ -1,3 +1,4 @@
+import { Box, Grid } from '@material-ui/core';
 import React from 'react';
 import CardItem from './CardItem';
 import './News.scss';
@@ -16,6 +17,11 @@ const News = () => {
         <CardItem />
         <CardItem />
       </div>
+      <Grid container>
+        <Grid item xs={12} className="view-more">
+          Xem thêm
+        </Grid>
+      </Grid>
     </div>
   );
 };
