@@ -7,6 +7,27 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+
+const NextArrow = props => {
+  const { className, style, onClick } = props;
+  return (
+    <NavigateNextIcon className={className} style={{ ...style, display: 'block', color: 'black' }} onClick={onClick} />
+  );
+};
+
+const PrevArrow = props => {
+  const { className, style, onClick } = props;
+  return (
+    <NavigateBeforeIcon
+      className={className}
+      style={{ ...style, display: 'block', color: 'black' }}
+      onClick={onClick}
+    />
+  );
+};
+
 const Discover = () => {
   const discoverItems = [
     {
@@ -78,12 +99,16 @@ const Discover = () => {
 
   const settings = {
     className: 'center',
+    centerMode: false,
     centerPadding: '60px',
+    infinite: false,
     slidesToShow: 5,
     speed: 500,
     rows: 2,
     slidesPerRow: 1,
-    slideToScroll: 1,
+    slidesToScroll: 5,
+    nextArrow: <NextArrow style={{ right: '-50px !important' }} />,
+    prevArrow: <PrevArrow />,
   };
   return (
     <div>

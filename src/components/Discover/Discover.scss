@@ -27,3 +27,29 @@
     transition: all ease 400ms;
   }
 }
+
+.slick-prev {
+  -webkit-box-shadow: 0px 0px 5px 0px #000000;
+  box-shadow: 0px 0px 5px 0px #000000;
+  border-radius: 100%;
+  transform: scale(1.2) translateY(-80%) translateX(100%) !important;
+  z-index: 5;
+}
+
+.slick-next {
+  -webkit-box-shadow: 0px 0px 5px 0px #000000;
+  box-shadow: 0px 0px 5px 0px #000000;
+  border-radius: 100%;
+  transform: scale(1.2) translateY(-80%) translateX(-100%) !important;
+}
+
+.slick-disabled {
+  opacity: 0 !important;
+}
+
+.slick-slide {
+  div {
+    display: flex;
+    justify-content: center;
+  }
+}
