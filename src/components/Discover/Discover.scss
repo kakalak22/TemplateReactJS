@@ -1,0 +1,29 @@
+.discover-item-wrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.discover-item {
+  width: 117px;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  img {
+    width: 84px;
+    height: 84px;
+    border-radius: 15px;
+  }
+  p {
+    text-align: center;
+  }
+  &:hover {
+    color: #38699f;
+    transition: all ease 400ms;
+  }
+}

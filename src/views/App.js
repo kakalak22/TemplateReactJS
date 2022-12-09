@@ -1,21 +1,23 @@
-import { Route, Switch } from "react-router-dom";
-import React,{ lazy } from "react";
-import { LoginPage, DashboardPage } from "../containers";
-import { Header, Loading, ProtectedRoute } from "../components/common";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { pathKeys } from "../constants";
-import { loginActions } from "../redux/actions";
-import { isEmpty } from "../utils/common";
-import { globalKeys } from "../constants";
-import { I18nextProvider } from "react-i18next";
-import i18next from "../translations/i18next";
-import styled from "styled-components";
-import { DrawerLeft } from "../components";
-import { LAYOUT } from "../constants/common";
-const AboutView = lazy(() => import("../views/About/AboutView"));
-const HomeView = lazy(() => import("../views/Home/HomeView"));
-const NotFoundView = lazy(() => import("../views/NotFound/NotFoundView"));
+import { Route, Switch } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { LoginPage, DashboardPage } from '../containers';
+import { Header, Loading, ProtectedRoute } from '../components/common';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { pathKeys } from '../constants';
+import { loginActions } from '../redux/actions';
+import { isEmpty } from '../utils/common';
+import { globalKeys } from '../constants';
+import { I18nextProvider } from 'react-i18next';
+import i18next from '../translations/i18next';
+import styled from 'styled-components';
+import { DrawerLeft } from '../components';
+import { LAYOUT } from '../constants/common';
+
+const DemoHome = lazy(() => import('../views/DemoApp/DemoHome'));
+const AboutView = lazy(() => import('../views/About/AboutView'));
+const HomeView = lazy(() => import('../views/Home/HomeView'));
+const NotFoundView = lazy(() => import('../views/NotFound/NotFoundView'));
 const AppWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
@@ -24,19 +26,19 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
-const Layout = ({ layout,props = null, children })=> {
+const Layout = ({ layout, props = null, children }) => {
   switch (layout) {
     case LAYOUT.FULLPAGE: {
       return React.createElement(AppWrapper, null, children);
     }
     case LAYOUT.DRAWERLEFT: {
-      return React.createElement(DrawerLeft,props, children);
+      return React.createElement(DrawerLeft, props, children);
     }
     default: {
       return React.createElement(AppWrapper, null, children);
     }
   }
-}
+};
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -59,7 +61,6 @@ class App extends React.PureComponent {
     this.props.getMemberDetail().then(
       result => {
         if (isEmpty(result) || isEmpty(result.token)) {
-
           this.setRender(false);
         } else {
           global[globalKeys.AUTH_TOKEN] = result.token;
@@ -68,30 +69,27 @@ class App extends React.PureComponent {
       },
       () => {
         this.setRender(false);
-      }
+      },
     );
   }
 
   render() {
-    const { isLoggedIn} = this.props.loginState;
-    const layout = isLoggedIn?LAYOUT.DRAWERLEFT:LAYOUT.FULLPAGE;
+    const { isLoggedIn } = this.props.loginState;
+    const layout = isLoggedIn ? LAYOUT.DRAWERLEFT : LAYOUT.FULLPAGE;
     const { logout } = this.props;
     return (
       <I18nextProvider i18n={i18next}>
         <div>
-          <Loading loading={this.props.loading}/>
-          <Layout layout={layout} props={{logout:logout}}>
+          <Loading loading={this.props.loading} />
+          <Layout layout={layout} props={{ logout: logout }}>
             {!isLoggedIn && <Header />}
             <Switch>
-              <Route exact path="/" component={HomeView}/>
-              <Route path={pathKeys.ABOUT} component={AboutView}/>
-              <Route path={pathKeys.LOGIN} component={LoginPage}/>
-              <ProtectedRoute
-                path={pathKeys.DASHBOARD}
-                component={DashboardPage}
-                isAuthenticated={isLoggedIn}
-              />
-              <Route component={NotFoundView}/>i
+              <Route exact path="/" component={HomeView} />
+              <Route path={pathKeys.ABOUT} component={AboutView} />
+              <Route path={pathKeys.LOGIN} component={LoginPage} />
+              <ProtectedRoute path={pathKeys.DASHBOARD} component={DashboardPage} isAuthenticated={isLoggedIn} />
+              <Route path={pathKeys.DEMO} component={DemoHome} />
+              <Route component={NotFoundView} />
             </Switch>
           </Layout>
         </div>
@@ -104,7 +102,7 @@ const mapStateToProps = state => {
   return {
     locale: state.localeReducer.locale,
     loading: state.loadingReducer.loading,
-    loginState: state.loginReducer
+    loginState: state.loginReducer,
   };
 };
 
@@ -116,14 +114,13 @@ const mapDispatchToProps = {
 App.propTypes = {
   locale: PropTypes.string,
   loading: PropTypes.bool,
-  getMemberDetail: PropTypes.func.isRequired
+  getMemberDetail: PropTypes.func.isRequired,
 };
 
 App.defaultProps = {
-  locale: "",
+  locale: '',
   loading: false,
-  getMemberDetail: () => {
-  }
+  getMemberDetail: () => {},
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

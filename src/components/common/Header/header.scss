@@ -1,11 +1,75 @@
-@import "../../../styles/variables";
-.header-wrapper{
-  .toolBar{
-    background-color: $headerColor;
-    .item-menu{
-      color: white;
+@import '../../../styles/variables';
+.header-wrapper {
+  background-color: $headerColor !important;
+  .container-wrapper {
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center !important;
+    .logo-wrapper {
+      display: flex;
+      justify-content: flex-start;
+      .logo {
+        width: 96px;
+        height: 35px;
+      }
+    }
+
+    .toolBar {
+      // background-color: $headerColor;
+      width: 100%;
+      display: flex;
+      gap: 0.5rem;
+      .item-menu {
+        color: $black;
+        padding: 0px 10px;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        font-weight: 100 !important;
+      }
+    }
+
+    .addition {
+      color: $black;
       padding: 0px 10px;
-      font-size: 18px;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      font-weight: 200 !important;
+    }
+
+    .search-container {
+      background-color: white;
+      display: flex;
+      padding: 2px;
+      padding-left: 10px;
+      border-radius: 5px;
+
+      input {
+        width: 90%;
+      }
+
+      .search-icon-container {
+        background-color: orange;
+        padding: 5px 15px;
+        border-radius: 5px;
+      }
+    }
+
+    .login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      color: $black;
+    }
+    .btn {
+      background-color: $buttonColor;
+      color: white;
+      &:hover {
+        background-color: $buttonColor_hover;
+        transition: all ease 400ms;
+      }
     }
   }
 }
